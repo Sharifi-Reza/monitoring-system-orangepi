@@ -1,0 +1,16 @@
+[Unit]
+Description=FastAPI Swagger Gateway for Smart Security
+After=network-online.target webserver.service
+Requires=webserver.service
+
+[Service]
+Type=simple
+User=guard
+WorkingDirectory=/home/guard
+# We use python3 -m uvicorn so we don't have to guess where the uvicorn binary is installed
+ExecStart=/usr/bin/python3 -m uvicorn api_gateway:app --host 0.0.0.0 --port 8000
+Restart=always
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target

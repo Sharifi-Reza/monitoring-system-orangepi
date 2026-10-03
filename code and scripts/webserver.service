@@ -1,0 +1,15 @@
+[Unit]
+Description=Smart Security HTTPS Web Server
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=guard
+WorkingDirectory=/home/guard
+ExecStart=/home/guard/webserver
+Restart=always
+RestartSec=3s
+
+[Install]
+WantedBy=multi-user.target
